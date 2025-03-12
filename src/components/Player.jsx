@@ -40,8 +40,9 @@ const Player = () => {
       setPlay(true);
     }
   };
+  // ============
   useEffect(() => {
-    if (surah && audioRef.current) {
+    if ((readear, surah && audioRef.current)) {
       setLoading(true);
       audioRef.current.load();
       if (play) {
@@ -60,30 +61,29 @@ const Player = () => {
   }, [surah, readear]);
 
   return (
-    <section className="mt-10 w-full top-[90px] left-0 right-0 sticky">
+    <section className="mt-0 w-full top-[90px] left-0 right-0 sticky">
       <div className="container">
-        <div className="row bg-black/95 py-7 rounded-lg px-5">
+        <div className="row bg-black/95 rounded-lg py-7 px-5">
           <h1 className="text-white w-full text-center mb-1 text-2xl">
             {localStorage?.getItem("readerName")}{" "}
           </h1>
           <h1 className="ayah text-white w-full text-center mb-5 text-2xl">
             {surah?.title}
           </h1>
-          <div className="ayah"></div>
-
-          {/* {surah && ( */}
           {loading && <Loading />}
           <audio ref={audioRef} className="w-full mb-5" controls>
             <source src={surah?.url} type="audio/mp3" />
           </audio>
           {/* )} */}
           <div className="buttons flex items-center justify-around">
+            {/* prev Audio */}
             <span
               className="bg-white/95 p-3 rounded-full cursor-pointer"
               onClick={prevAudio}
             >
               <MdSkipPrevious className="text-black text-2xl" />
             </span>
+            {/* Control Button */}
             <span
               className="bg-white/95 p-3 rounded-full cursor-pointer"
               onClick={playAudio}
@@ -94,6 +94,7 @@ const Player = () => {
                 <FaPlay className="text-black text-xl" />
               )}
             </span>
+            {/* next Audio */}
             <span
               className="bg-white/95 p-3 rounded-full cursor-pointer"
               onClick={nextAudio}

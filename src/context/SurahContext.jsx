@@ -4,6 +4,7 @@ import { createContext, useEffect, useState } from "react";
 export const SurahContext = createContext();
 const SurahContextProvider = ({ children }) => {
   const [surahs, setSurahs] = useState([]);
+  const [error, setError] = useState("");
   const [surah, setSurah] = useState();
   const [selected, setSelected] = useState("");
   const [loading, setLoading] = useState(false);
@@ -18,7 +19,7 @@ const SurahContextProvider = ({ children }) => {
       console.log(data?.attachments);
       setSurahs(data?.attachments);
     } catch (error) {
-      console.log(error);
+      setError(error?.message);
     } finally {
       setLoading(false);
     }
@@ -40,6 +41,7 @@ const SurahContextProvider = ({ children }) => {
         setReader,
         readear,
         setSurahs,
+        error,
       }}
     >
       {children}
